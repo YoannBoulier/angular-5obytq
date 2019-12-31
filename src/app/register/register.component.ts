@@ -10,9 +10,6 @@ import { ValidationEmail } from '../validation-email';
 export class RegisterComponent implements OnInit {
   registerForm: FormGroup;
   enregistrer = false;
-  email: String = '';
-  password: String = '';
-  passwordVerif: String = '';
 
   constructor(private builder: FormBuilder) {
     this.registerForm = this.builder.group({

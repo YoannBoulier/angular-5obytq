@@ -9,8 +9,6 @@ import { FormGroup,  FormBuilder, Validators } from '@angular/forms';
 export class LoginComponent implements OnInit {
   connexionForm: FormGroup;
   connecter = false;
-  email: String = '';
-  password: String = '';
 
   constructor(private builder: FormBuilder) {
     this.connexionForm = this.builder.group({

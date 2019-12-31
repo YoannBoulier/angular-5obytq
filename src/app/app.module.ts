@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AppComponent } from './app.component';
 import { NavBarComponent } from './navbar/navbar.component';
@@ -21,8 +20,7 @@ const appRoutes: Routes = [
   imports:      [ RouterModule.forRoot(appRoutes, { enableTracing: true }),
                   BrowserModule, 
                   FormsModule, 
-                  ReactiveFormsModule, 
-                  NgbModule ],
+                  ReactiveFormsModule ],
   declarations: [ AppComponent, 
                   NavBarComponent, 
                   RegisterComponent,

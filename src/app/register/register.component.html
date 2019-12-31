@@ -1,11 +1,11 @@
-<div class="card m-3" style="text-align:center">
+<div class="card text-center mx-auto" style="max-width: 30rem;">
   <h5 class="card-header">Formulaire d'inscription</h5>
   <div class="card-body">
     <form [formGroup]="registerForm" (ngSubmit)="inscription(registerForm.value)">
       <div class="form-group">
-        Adresse Mail : <input type="email" class="form-control" formControlName="email" [(ngModel)]="email">
-        <div *ngIf="registerForm.controls['email'].errors" >
-          <div *ngIf="enregistrer && registerForm.controls['email'].errors.required" class="alert alert-danger">
+        Adresse Mail : <input type="email" class="form-control" formControlName="email">
+        <div *ngIf="enregistrer && registerForm.controls['email'].errors" >
+          <div *ngIf="registerForm.controls['email'].errors.required" class="alert alert-danger">
             L'adresse email est obligatoire
           </div>
           <div *ngIf="registerForm.controls['email'].invalid && registerForm.controls['email'].dirty && registerForm.controls['email'].errors.pattern" class="alert alert-danger">
@@ -13,16 +13,16 @@
           </div>
         </div>
         <br><br>
-        Mot de passe : <input type="password" class="form-control" formControlName="password" [(ngModel)]="password">
+        Mot de passe : <input type="password" class="form-control" formControlName="password">
         <div *ngIf="registerForm.controls['password'].errors" >
           <div *ngIf="enregistrer && registerForm.controls['password'].errors.required" class="alert alert-danger">
             Le mot de passe est obligatoire
           </div>
         </div>
         <br><br>
-        Vérification du mot de passe : <input type="password" class="form-control" formControlName="passwordVerif" [(ngModel)]="passwordVerif">
-        <div *ngIf="registerForm.controls['passwordVerif'].errors" >
-          <div *ngIf="enregistrer && registerForm.controls['passwordVerif'].errors.required" class="alert alert-danger">
+        Vérification du mot de passe : <input type="password" class="form-control" formControlName="passwordVerif">
+        <div *ngIf="enregistrer && registerForm.controls['passwordVerif'].errors" >
+          <div *ngIf="registerForm.controls['passwordVerif'].errors.required" class="alert alert-danger">
             Le mot de passe est obligatoire
           </div>
           <div *ngIf="registerForm.controls['passwordVerif'].invalid && registerForm.controls['passwordVerif'].dirty && registerForm.controls['passwordVerif'].errors.verifyEmail" class="alert alert-danger">

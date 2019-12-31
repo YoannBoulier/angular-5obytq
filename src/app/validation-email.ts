@@ -2,7 +2,7 @@ import { FormGroup } from '@angular/forms';
 
 export class ValidationEmail {
 
-  // Compare les deux emails renseignés dans le formulaire d'inscription pour vérifier qu'ils sont bien égaux
+  // Compare les deux mots de passe renseignés dans le formulaire d'inscription pour vérifier qu'ils sont bien égaux
   public static verifyEmail(group: FormGroup) {
     if (group.controls != null || group.parent != null)
     {
