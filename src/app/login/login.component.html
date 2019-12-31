@@ -1,0 +1,27 @@
+<div class="card m-3" style="text-align:center">
+  <h5 class="card-header">Formulaire de connexion</h5>
+  <div class="card-body">
+    <form [formGroup]="connexionForm" (ngSubmit)="connexion(connexionForm.value)">
+      <div class="form-group">
+        Adresse Mail : <input type="email" class="form-control" formControlName="email" [(ngModel)]="email">
+        <div *ngIf="connexionForm.controls['email'].errors" >
+          <div *ngIf="connecter && connexionForm.controls['email'].errors.required" class="alert alert-danger">
+            L'adresse email est obligatoire
+          </div>
+          <div *ngIf="connexionForm.controls['email'].invalid && connexionForm.controls['email'].dirty && connexionForm.controls['email'].errors.pattern" class="alert alert-danger">
+            Le format de l'adresse email n'est pas correct
+          </div>
+        </div>
+        <br><br>
+        Mot de passe : <input type="password" class="form-control" formControlName="password" [(ngModel)]="password">
+        <div *ngIf="connexionForm.controls['password'].errors" >
+          <div *ngIf="connecter && connexionForm.controls['password'].errors.required" class="alert alert-danger">
+            Le mot de passe est obligatoire
+          </div>
+        </div>
+      <br>
+      <button class="button" type="submit">Connexion</button>
+      </div>
+    </form>
+  </div>
+</div>
