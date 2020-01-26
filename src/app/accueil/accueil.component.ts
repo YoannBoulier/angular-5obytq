@@ -25,4 +25,12 @@ export class AccueilComponent implements OnInit {
       { lat: 48.1137195, lng: -1.6335799 }
     ];
   }
+
+  ShowDestinationInfos(event)
+  {
+    // Appel à l'api pour récupérer les informations sur la destination en fonction de ses coordonnées
+    // Informations récupérées à définir
+
+    
+  }
 }
