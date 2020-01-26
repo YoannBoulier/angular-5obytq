@@ -23,7 +23,7 @@ const appRoutes: Routes = [
                   FormsModule, 
                   ReactiveFormsModule,
                   AgmCoreModule.forRoot({
-                    apiKey: 'AIzaSyDtyBso-Cg3svK2C0y9VNY4ih32cr_GdHE'
+                    apiKey: 'AIzaSyBjfImx9n8wkcavkuEVBGNnUtomX2_uUs8'
                   }) ],
   declarations: [ AppComponent, 
                   NavBarComponent, 
