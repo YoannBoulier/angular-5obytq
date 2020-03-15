@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup,  FormBuilder, Validators } from '@angular/forms';
+import { SessionService } from '../session.service';
+
 
 @Component({
   selector: 'app-login',
@@ -8,9 +10,10 @@ import { FormGroup,  FormBuilder, Validators } from '@angular/forms';
 })
 export class LoginComponent implements OnInit {
   connexionForm: FormGroup;
-  connecter = false;
+  tentative = false; // Flag de tentative de connexion
 
-  constructor(private builder: FormBuilder) {
+  constructor(private builder: FormBuilder,
+              public session : SessionService ) {
     this.connexionForm = this.builder.group({
       email: ['', [ Validators.required, Validators.pattern('[A-Za-z.]+@[A-Za-z]+[.][a-z]+')] ],
       password: ['', Validators.required ]
@@ -22,7 +25,7 @@ export class LoginComponent implements OnInit {
 
   // Fonction lancée à la validation du formulaire de connexion
   connexion(donneesConnexion) {
-    this.connecter = true;
+    this.tentative = true;
 
     if (this.connexionForm.invalid) {
       return;
@@ -30,7 +33,7 @@ export class LoginComponent implements OnInit {
 
     console.log(donneesConnexion);
 
-    // Appel à l'API ici
-    // -> Service à créer pour faire l'appel à l'API REST
+    this.session.connect(donneesConnexion);
+
   }
 }

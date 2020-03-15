@@ -4,7 +4,7 @@
     <form [formGroup]="connexionForm" (ngSubmit)="connexion(connexionForm.value)">
       <div class="form-group">
         Adresse Mail : <input type="email" class="form-control" formControlName="email">
-        <div *ngIf="connecter && connexionForm.controls['email'].errors" >
+        <div *ngIf="tentative && connexionForm.controls['email'].errors" >
           <div *ngIf="connexionForm.controls['email'].errors.required" class="alert alert-danger">
             L'adresse email est obligatoire
           </div>
@@ -15,7 +15,7 @@
         <br><br>
         Mot de passe : <input type="password" class="form-control" formControlName="password">
         <div *ngIf="connexionForm.controls['password'].errors" >
-          <div *ngIf="connecter && connexionForm.controls['password'].errors.required" class="alert alert-danger">
+          <div *ngIf="tentative && connexionForm.controls['password'].errors.required" class="alert alert-danger">
             Le mot de passe est obligatoire
           </div>
         </div>

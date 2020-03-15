@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
-import { AgmCoreModule } from '@agm/core';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { NavBarComponent } from './navbar/navbar.component';
@@ -10,21 +10,22 @@ import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
 import { AccueilComponent } from './accueil/accueil.component';
 
+import { SessionService } from './session.service';
+
 const appRoutes: Routes = [
-  { path: '', component: AccueilComponent },
-  { path: 'register', component: RegisterComponent },
+  { path: '', pathMatch: 'full', redirectTo: 'login'},
   { path: 'login', component: LoginComponent },
+  { path: 'register', component: RegisterComponent },
+  { path: 'accueil', component: AccueilComponent },
   //{ path: '**', component: PageNotFoundComponent }
 ];
 
 @NgModule({
-  imports:      [ RouterModule.forRoot(appRoutes, { enableTracing: true }),
+  imports:      [ RouterModule.forRoot(appRoutes),
                   BrowserModule, 
                   FormsModule, 
-                  ReactiveFormsModule,
-                  AgmCoreModule.forRoot({
-                    apiKey: ''
-                  }) ],
+                  HttpClientModule,
+                  ReactiveFormsModule ],
   declarations: [ AppComponent, 
                   NavBarComponent, 
                   RegisterComponent,
@@ -32,6 +33,7 @@ const appRoutes: Routes = [
                   AccueilComponent ],
   exports:      [ NavBarComponent ],
   bootstrap:    [ AppComponent,
-                  NavBarComponent ]
+                  NavBarComponent ],
+  providers: [SessionService]
 })
 export class AppModule { }

@@ -7,14 +7,17 @@
 
   <div id="menu" class="collapse navbar-collapse">
     <ul class="navbar-nav" data-toggle="collapse" data-target="#menu">
-      <li class="nav-item">
-        <a class="nav-link" routerLink=".">Accueil</a>
+      <li class="nav-item" [hidden]="!isConnected()">
+        <a class="nav-link" routerLink="/accueil">Accueil</a>
       </li>
-      <li class="nav-item">
+      <li class="nav-item" [hidden]="isConnected()">
+        <a class="nav-link" routerLink="/login">Connexion</a>
+      </li>
+      <li class="nav-item" [hidden]="isConnected()">
         <a class="nav-link" routerLink="/register">S'enregistrer</a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" routerLink="/login">Connexion</a>
+      <li class="nav-item" [hidden]="!isConnected()">
+        <a class="nav-link" (click)="logout()">Déconnexion</a>
       </li>
     </ul>
   </div>
