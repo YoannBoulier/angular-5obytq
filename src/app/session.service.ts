@@ -6,7 +6,7 @@ export class SessionService {
   isConnected = false;
 
   constructor(private http: HttpClient) { }
-
+  
   // Retourne true si l'utilisateur est reconnu, false sinon
   connect(donneesConnexion) {
     /*const headers = new HttpHeaders(donneesConnexion ? {
@@ -21,7 +21,7 @@ export class SessionService {
             }
         });
     */
-    
+
     this.isConnected = true; // Pour les tests
   }
 }

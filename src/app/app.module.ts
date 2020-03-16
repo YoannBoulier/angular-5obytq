@@ -12,6 +12,7 @@ import { AccueilComponent } from './accueil/accueil.component';
 
 import { SessionService } from './session.service';
 import { GeoApiService } from './geo-api.service';
+import { RestApiService } from './rest-api.service';
 
 const appRoutes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'login'},
@@ -35,6 +36,6 @@ const appRoutes: Routes = [
   exports:      [ NavBarComponent ],
   bootstrap:    [ AppComponent,
                   NavBarComponent ],
-  providers: [SessionService, GeoApiService]
+  providers: [SessionService, GeoApiService, RestApiService]
 })
 export class AppModule { }

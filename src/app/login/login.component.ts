@@ -23,6 +23,7 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit() {
+    
   }
 
   // Fonction lancée à la validation du formulaire de connexion
@@ -32,8 +33,6 @@ export class LoginComponent implements OnInit {
     if (this.connexionForm.invalid) {
       return;
     }
-
-    console.log(donneesConnexion);
 
     this.session.connect(donneesConnexion);
     

@@ -1,17 +1,39 @@
-<div class="input-group mb-3">
-  <select class="custom-select" [(ngModel)]="regionChoisie" (ngModelChange)="displayDepartements($event)">
-    <option *ngFor="let region of regions" [ngValue]="region.code">{{ region.nom }}</option>
-  </select>
+<div class="card text-center mx-auto" style="max-width: 30rem;" [hidden]="!isConnected()">
+  <h5 class="card-header">Ajouter une localisation</h5>
+  <div class="card-body">
+    <div class="input-group mb-3">
+      <select class="custom-select" [(ngModel)]="regionChoisie" (ngModelChange)="displayDepartements($event)">
+        <option *ngFor="let region of regions" [ngValue]="region.code">{{ region.nom }}</option>
+      </select>
+    </div>
+
+    <div [hidden]="regionNotChoosed" class="input-group mb-3">
+      <select class="custom-select" [(ngModel)]="departementChoisie" (ngModelChange)="displayCommunes($event)">
+        <option *ngFor="let departement of departements" [ngValue]="departement.code">{{ departement.nom }}</option>
+      </select>
+    </div>
+
+    <div [hidden]="departementNotChoosed" class="input-group mb-3">
+      <select class="custom-select" [(ngModel)]="communeChoisie">
+        <option *ngFor="let commune of communes" [ngValue]="commune.code">{{ commune.nom }}</option>
+      </select>
+    </div>
+
+    <input (click)='saveLocation(regionChoisie, departementChoisie, communeChoisie)' type='button' value='Sauvegarder la localisation'>
+  </div>
 </div>
 
-<div [hidden]="regionNotChoosed" class="input-group mb-3">
-  <select class="custom-select" [(ngModel)]="departementChoisie" (ngModelChange)="displayCommunes($event)">
-    <option *ngFor="let departement of departements" [ngValue]="departement.code">{{ departement.nom }}</option>
-  </select>
-</div>
+<br>
 
-<div [hidden]="departementNotChoosed" class="input-group mb-3">
-  <select class="custom-select" [(ngModel)]="communeChoisie">
-    <option *ngFor="let commune of communes" [ngValue]="commune.code">{{ commune.nom }}</option>
-  </select>
+<div class="card text-center mx-auto" style="max-width: 30rem;" [hidden]="!isConnected()">
+  <h5 class="card-header">Ajouter un sport</h5>
+  <div class="card-body">
+    <div class="input-group mb-3">
+      <select class="custom-select" [(ngModel)]="sportChoisi">
+        <option *ngFor="let sport of sports" [ngValue]="sport.code">{{ sport.nom }}</option>
+      </select>
+    </div>
+
+    <input (click)='saveSport(sportChoisi)' type='button' value='Sauvegarder le sport'>
+  </div>
 </div>
