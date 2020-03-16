@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup,  FormBuilder, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { SessionService } from '../session.service';
 
 
@@ -13,7 +14,8 @@ export class LoginComponent implements OnInit {
   tentative = false; // Flag de tentative de connexion
 
   constructor(private builder: FormBuilder,
-              public session : SessionService ) {
+              private session : SessionService,
+              private router: Router ) {
     this.connexionForm = this.builder.group({
       email: ['', [ Validators.required, Validators.pattern('[A-Za-z.]+@[A-Za-z]+[.][a-z]+')] ],
       password: ['', Validators.required ]
@@ -34,6 +36,7 @@ export class LoginComponent implements OnInit {
     console.log(donneesConnexion);
 
     this.session.connect(donneesConnexion);
-
+    
+    this.router.navigateByUrl('/accueil');
   }
 }
