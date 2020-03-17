@@ -12,7 +12,7 @@
         <option *ngFor="let departement of departements" [ngValue]="departement.code">{{ departement.nom }}</option>
       </select>
     </div>
-
+    
     <div [hidden]="departementNotChoosed" class="input-group mb-3">
       <select class="custom-select" [(ngModel)]="communeChoisie">
         <option *ngFor="let commune of communes" [ngValue]="commune.code">{{ commune.nom }}</option>
@@ -28,10 +28,45 @@
 <div class="card text-center mx-auto" style="max-width: 30rem;" [hidden]="!isConnected()">
   <h5 class="card-header">Ajouter un sport</h5>
   <div class="card-body">
-    <div class="input-group mb-3">
-      <select class="custom-select" [(ngModel)]="sportChoisi">
-        <option *ngFor="let sport of sports" [ngValue]="sport.code">{{ sport.nom }}</option>
+    <label class="form-check-label" style="margin-right: 25px" for="sport">Nom du sport :</label>
+    <input [(ngModel)]="sport" id="sport">
+    <br><br>
+    <select class="custom-select" [(ngModel)]="temps">
+        <option>Ensoleillé</option>
+        <option>Nuageux</option>
+        <option>Pluie</option>
       </select>
+    <br><br>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" id="aquatique" [(ngModel)]="aquatique">
+      <label class="form-check-label" for="aquatique">
+        Sport aquatique ?
+      </label>
+    </div>
+    <br>
+    <div [hidden]="!aquatique" class="input-group mb-3">
+      <label class="form-check-label" style="margin-right: 25px" for="houleMin">Houle min : </label>
+      <input [(ngModel)]="houleMin" id="houleMin">
+    </div>
+    <div [hidden]="!aquatique" class="input-group mb-3">
+      <label class="form-check-label" style="margin-right: 25px" for="houleMax">Houle max : </label>
+      <input [(ngModel)]="houleMax" id="houleMax">
+      <br>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" id="exterieur" [(ngModel)]="exterieur">
+      <label class="form-check-label" for="exterieur">
+        En extérieur ?
+      </label>
+    </div>
+    <br>
+    <div [hidden]="!exterieur" class="input-group mb-3">
+      <label class="form-check-label" style="margin-right: 25px" for="ventMin">Vent min : </label>
+      <input [(ngModel)]="ventMin" id="ventMin">
+    </div>
+    <div [hidden]="!exterieur" class="input-group mb-3">
+      <label class="form-check-label" style="margin-right: 25px" for="ventMax">Vent max : </label>
+      <input [(ngModel)]="ventMax" id="ventMax">
     </div>
 
     <input (click)='saveSport(sportChoisi)' type='button' value='Sauvegarder le sport'>
