@@ -1,4 +1,5 @@
-import {Component, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { FormGroup,  FormBuilder, Validators } from '@angular/forms';
 import { SessionService } from '../session.service';
 import { GeoApiService } from '../geo-api.service';
 import { RestApiService } from '../rest-api.service';
@@ -10,13 +11,26 @@ import { RestApiService } from '../rest-api.service';
   styleUrls: [ 'accueil.component.css' ],
 })
 export class AccueilComponent implements OnInit {
+  locationForm: FormGroup;
+  sportForm: FormGroup;
+  tentativeCreationLocalisation = false;
+  tentativeCreationSport = false;
   regions:any[] = [];
   departements:any[] = [];
   communes:any[] = [];
-  regionNotChoosed = true;
-  departementNotChoosed = true;
+  regionChoosed; 
+  departementChoosed; 
+  communeChoosed;
 
-  constructor(private api : GeoApiService, private rest : RestApiService, private session : SessionService) { }
+  constructor(private builder: FormBuilder, private api : GeoApiService, private rest : RestApiService, private session : SessionService) { 
+    this.locationForm = this.builder.group({
+      region: ['', Validators.required ]
+    });
+    this.sportForm = this.builder.group({
+      sport: ['', Validators.required ],
+      tempsIdeal: ['', Validators.required ]
+    });
+  }
 
   ngOnInit() {
     this.api.getRegions().subscribe((data: {}) => {
@@ -25,27 +39,45 @@ export class AccueilComponent implements OnInit {
   }
 
   displayDepartements(region) {
-    this.api.getDepartements(region).subscribe((data: {}) => {
-      this.departements = JSON.parse(JSON.stringify(data));
-    });
-    this.regionNotChoosed = false;
+    if (region != undefined)
+    {
+      console.log(region);
+      this.api.getDepartements(region).subscribe((data: {}) => {
+        this.departements = JSON.parse(JSON.stringify(data));
+      });
+    }
   }
 
   displayCommunes(departement) {
-    this.api.getCommunes(departement).subscribe((data: {}) => {
-      this.communes = JSON.parse(JSON.stringify(data));
-    });
-    this.departementNotChoosed = false;
+    if (departement != undefined)
+    {
+      this.api.getCommunes(departement).subscribe((data: {}) => {
+        this.communes = JSON.parse(JSON.stringify(data));
+      });
+    }
   }
 
-  saveLocation(region, departement, commune) {
+  saveLocation() {
+    this.tentativeCreationLocalisation = true;
+
+    if (this.locationForm.invalid) {
+      return;
+    }
+
+    console.log(this.regionChoosed);
+    console.log(this.departementChoosed);
+    console.log(this.communeChoosed);
 
     // Appel à l'API REST pour sauvegarde la localisation
 
   }
 
-  saveSport(nom, tempsIdeal, houleMin, houleMax, ventMin, ventMax) {
-    
+  saveSport() {
+    this.tentativeCreationSport = true;
+
+    if (this.sportForm.invalid) {
+      return;
+    }
     // Appel à l'API REST pour sauvegarde le sport
 
   }
