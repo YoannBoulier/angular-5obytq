@@ -36,6 +36,6 @@ export class LoginComponent implements OnInit {
 
     this.session.connect(donneesConnexion);
     
-    this.router.navigateByUrl('/accueil');
+    this.router.navigateByUrl('/creation');
   }
 }

@@ -12,5 +12,7 @@
         <option *ngFor="let sport of sports" [ngValue]="sport.code">{{ sport.name }}</option>
       </select>
     </div>
+
+    <input (click)='saveAssociation(sportChoosed, locationChoosed)' type='button' value='Associer'>
   </div>
 </div>

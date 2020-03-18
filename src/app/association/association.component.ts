@@ -19,7 +19,7 @@ export class AssociationComponent implements OnInit {
     this.locations = this.rest.getUserLocations();
   }
 
-  saveAssocation(sportId, locationId) {
+  saveAssociation(sportId, locationId) {
     this.rest.saveAssocation(sportId, locationId);
   }
 
