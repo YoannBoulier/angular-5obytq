@@ -1,0 +1,16 @@
+<div class="card text-center mx-auto" style="max-width: 30rem;" [hidden]="!isConnected()">
+  <h5 class="card-header">Associer une localisation à un sport</h5>
+  <div class="card-body">
+    <div class="input-group mb-3">
+      <select class="custom-select" [(ngModel)]="locationChoosed">
+        <option *ngFor="let location of locations" [ngValue]="location.code">{{ location.name }}</option>
+      </select>
+    </div>
+
+    <div class="input-group mb-3">
+      <select class="custom-select" [(ngModel)]="sportChoosed">
+        <option *ngFor="let sport of sports" [ngValue]="sport.code">{{ sport.name }}</option>
+      </select>
+    </div>
+  </div>
+</div>

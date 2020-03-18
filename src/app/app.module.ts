@@ -9,6 +9,7 @@ import { NavBarComponent } from './navbar/navbar.component';
 import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
 import { AccueilComponent } from './accueil/accueil.component';
+import { AssociationComponent } from './association/association.component';
 
 import { SessionService } from './session.service';
 import { GeoApiService } from './geo-api.service';
@@ -18,7 +19,8 @@ const appRoutes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'login'},
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
-  { path: 'accueil', component: AccueilComponent },
+  { path: 'creation', component: AccueilComponent },
+  { path: 'association', component: AssociationComponent }
   //{ path: '**', component: PageNotFoundComponent }
 ];
 
@@ -32,7 +34,8 @@ const appRoutes: Routes = [
                   NavBarComponent, 
                   RegisterComponent,
                   LoginComponent,
-                  AccueilComponent ],
+                  AccueilComponent,
+                  AssociationComponent ],
   exports:      [ NavBarComponent ],
   bootstrap:    [ AppComponent,
                   NavBarComponent ],
