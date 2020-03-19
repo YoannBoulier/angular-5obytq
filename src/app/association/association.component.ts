@@ -34,6 +34,9 @@ export class AssociationComponent implements OnInit {
     if (this.associationForm.invalid) {
       return;
     }
+    
+    console.log(this.locationChoosed);
+    console.log(this.sportChoosed);
 
     this.rest.saveAssociation(this.sportChoosed, this.locationChoosed);
   }
