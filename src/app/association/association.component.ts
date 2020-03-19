@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup,  FormBuilder, Validators } from '@angular/forms';
 import { SessionService } from '../session.service';
 import { RestApiService } from '../rest-api.service';
 
@@ -8,10 +9,18 @@ import { RestApiService } from '../rest-api.service';
   styleUrls: ['./association.component.css']
 })
 export class AssociationComponent implements OnInit {
+  associationForm: FormGroup;
+  tentativeAssociation = false;
   sports:any[] = [];
   locations:any[] = [];
+  locationChoosed; sportChoosed;
 
-  constructor(private rest : RestApiService, private session : SessionService) { }
+  constructor(private builder: FormBuilder, private rest : RestApiService, private session : SessionService) { 
+    this.associationForm = this.builder.group({
+      sport: ['', Validators.required ],
+      location: ['', Validators.required ]
+    });
+  }
 
   ngOnInit() {
     // A modifier une fois l'appel à l'API REST fonctionnel
@@ -19,8 +28,14 @@ export class AssociationComponent implements OnInit {
     this.locations = this.rest.getUserLocations();
   }
 
-  saveAssociation(sportId, locationId) {
-    this.rest.saveAssocation(sportId, locationId);
+  saveAssociation() {
+    this.tentativeAssociation = true;
+
+    if (this.associationForm.invalid) {
+      return;
+    }
+
+    this.rest.saveAssociation(this.sportChoosed, this.locationChoosed);
   }
 
   isConnected(){

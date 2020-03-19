@@ -18,9 +18,8 @@ export class AccueilComponent implements OnInit {
   regions:any[] = [];
   departements:any[] = [];
   communes:any[] = [];
-  regionChoosed; 
-  departementChoosed; 
-  communeChoosed;
+  regionChoosed; departementChoosed; communeChoosed;
+  sportChoosed; temps; aquatique; houleMin; houleMax; exterieur; ventMin; ventMax;
 
   constructor(private builder: FormBuilder, private api : GeoApiService, private rest : RestApiService, private session : SessionService) { 
     this.locationForm = this.builder.group({
@@ -78,6 +77,16 @@ export class AccueilComponent implements OnInit {
     if (this.sportForm.invalid) {
       return;
     }
+
+    console.log(this.sportChoosed); 
+    console.log(this.temps);
+    console.log(this.aquatique); 
+    console.log(this.houleMin); 
+    console.log(this.houleMax); 
+    console.log(this.exterieur);
+    console.log(this.ventMin); 
+    console.log(this.ventMax);
+
     // Appel à l'API REST pour sauvegarde le sport
 
   }

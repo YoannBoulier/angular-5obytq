@@ -1,18 +1,30 @@
 <div class="card text-center mx-auto" style="max-width: 30rem;" [hidden]="!isConnected()">
   <h5 class="card-header">Associer une localisation à un sport</h5>
   <div class="card-body">
-    <div class="input-group mb-3">
-      <select class="custom-select" [(ngModel)]="locationChoosed">
-        <option *ngFor="let location of locations" [ngValue]="location.code">{{ location.name }}</option>
-      </select>
-    </div>
+    <form [formGroup]="associationForm" (ngSubmit)="saveAssociation()">
+      <div class="input-group mb-3">
+        <select class="custom-select" formControlName="location" [(ngModel)]="locationChoosed">
+          <option *ngFor="let location of locations" [ngValue]="location.code">{{ location.name }}</option>
+        </select>
+      </div>
+      <div *ngIf="tentativeAssociation && associationForm.controls['location'].errors" >
+        <div *ngIf="associationForm.controls['location'].errors.required" class="alert alert-danger">
+          Ce champ est obligatoire
+        </div>
+      </div>
 
-    <div class="input-group mb-3">
-      <select class="custom-select" [(ngModel)]="sportChoosed">
-        <option *ngFor="let sport of sports" [ngValue]="sport.code">{{ sport.name }}</option>
-      </select>
-    </div>
+      <div class="input-group mb-3">
+        <select class="custom-select" formControlName="sport" [(ngModel)]="sportChoosed">
+          <option *ngFor="let sport of sports" [ngValue]="sport.code">{{ sport.name }}</option>
+        </select>
+      </div>
+      <div *ngIf="tentativeAssociation && associationForm.controls['sport'].errors" >
+        <div *ngIf="associationForm.controls['sport'].errors.required" class="alert alert-danger">
+          Ce champ est obligatoire
+        </div>
+      </div>
 
-    <input (click)='saveAssociation(sportChoosed, locationChoosed)' type='button' value='Associer'>
+      <button class="button" type="submit">Associer</button>
+    </form>
   </div>
 </div>
