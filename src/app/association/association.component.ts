@@ -14,7 +14,7 @@ export class AssociationComponent implements OnInit {
   sports:any[] = [];
   locations:any[] = [];
   locationChoosed; sportChoosed;
-
+  
   constructor(private builder: FormBuilder, private rest : RestApiService, private session : SessionService) { 
     this.associationForm = this.builder.group({
       sport: ['', Validators.required ],
@@ -34,7 +34,7 @@ export class AssociationComponent implements OnInit {
     if (this.associationForm.invalid) {
       return;
     }
-    
+
     console.log(this.locationChoosed);
     console.log(this.sportChoosed);
 
