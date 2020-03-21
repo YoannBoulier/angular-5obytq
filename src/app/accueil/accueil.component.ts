@@ -95,7 +95,7 @@ export class AccueilComponent implements OnInit {
     console.log(this.ventMax);
 
     // Appel à l'API REST pour sauvegarde le sport
-    this.rest.saveSport(this.session.getConnectedUserId(), this.sport, this.temps, this.houleMin, this.houleMax, this.ventMin, this.ventMax).subscribe((data: {}) => {
+    this.rest.saveSport(this.session.getConnectedUserId(), this.sportChoosed, this.temps, this.houleMin, this.houleMax, this.ventMin, this.ventMax).subscribe((data: {}) => {
       console.log(data);
     });
   }
