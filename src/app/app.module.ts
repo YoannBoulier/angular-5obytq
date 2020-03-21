@@ -10,6 +10,7 @@ import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
 import { AccueilComponent } from './accueil/accueil.component';
 import { AssociationComponent } from './association/association.component';
+import { ConsultationComponent } from './consultation/consultation.component';
 
 import { SessionService } from './session.service';
 import { GeoApiService } from './geo-api.service';
@@ -20,8 +21,8 @@ const appRoutes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'creation', component: AccueilComponent },
-  { path: 'association', component: AssociationComponent }
-  //{ path: '**', component: PageNotFoundComponent }
+  { path: 'association', component: AssociationComponent },
+  { path: 'consultation', component: ConsultationComponent }
 ];
 
 @NgModule({
@@ -35,7 +36,8 @@ const appRoutes: Routes = [
                   RegisterComponent,
                   LoginComponent,
                   AccueilComponent,
-                  AssociationComponent ],
+                  AssociationComponent,
+                  ConsultationComponent ],
   exports:      [ NavBarComponent ],
   bootstrap:    [ AppComponent,
                   NavBarComponent ],

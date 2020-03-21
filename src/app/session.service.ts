@@ -1,27 +1,33 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Observable, of } from 'rxjs';
+import { map, catchError, tap } from 'rxjs/operators';
+
+const endpoint = "http://localhost:9090";
+const httpOptions = {
+  headers: new HttpHeaders({
+    'Content-Type': 'application/json'
+  })
+};
 
 @Injectable()
 export class SessionService {
   isConnected = false;
+  user;
 
   constructor(private http: HttpClient) { }
-  
+
   // Retourne true si l'utilisateur est reconnu, false sinon
-  connect(donneesConnexion) {
-    /*const headers = new HttpHeaders(donneesConnexion ? {
-        authorization : 'Basic ' + btoa(donneesConnexion.email + ':' + donneesConnexion.password)
-      } : {});
+  connect(donneesConnexion): Observable<any> {
+    return this.http.get(endpoint + "login?email=" + donneesConnexion.email + "&password=" + donneesConnexion.password, httpOptions).pipe(map(this.extractData));
+  }
 
-    this.http.get('login', {headers: headers}).subscribe(response => {
-            if (response['name']) {
-                this.isConnected = true;
-            } else {
-                this.isConnected = false;
-            }
-        });
-    */
+  getConnectedUserId() {
+    return this.user.id;
+  }
 
-    this.isConnected = true; // Pour les tests
+  private extractData(res: Response) {
+    let body = res;
+    return body || { };
   }
 }

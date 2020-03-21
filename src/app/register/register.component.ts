@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup,  FormBuilder, Validators } from '@angular/forms';
 import { ValidationEmail } from '../validation-email';
+import { RestApiService } from '../rest-api.service';
+
 
 @Component({
   selector: 'app-register',
@@ -10,8 +12,9 @@ import { ValidationEmail } from '../validation-email';
 export class RegisterComponent implements OnInit {
   registerForm: FormGroup;
   enregistrer = false;
+  user;
 
-  constructor(private builder: FormBuilder) {
+  constructor(private builder: FormBuilder, public rest : RestApiService) {
     this.registerForm = this.builder.group({
       email: ['', [ Validators.required, Validators.pattern('[A-Za-z.]+@[A-Za-z]+[.][a-z]+')] ],
       password: ['', Validators.required ],
@@ -34,8 +37,11 @@ export class RegisterComponent implements OnInit {
     }
 
     console.log(donneesInscription);
+    
+    this.rest.register(donneesInscription.email, donneesInscription.password).subscribe((data: {}) => {
+      this.user = JSON.parse(JSON.stringify(data));
+    });
 
-    // Appel à l'API ici
-    // -> Service à créer pour faire l'appel à l'API REST
+    console.log(this.user);
   }
 }

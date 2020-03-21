@@ -1,0 +1,15 @@
+<table class="table">
+  <caption></caption>
+  <thead>
+    <tr>
+      <th scope="col">Sport</th>
+      <th scope="col">Localisation</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let association of associations">
+      <td>{{ association[0] }}</td>
+      <td>{{ association[1] }}</td>
+    </tr>
+  </tbody>
+</table>

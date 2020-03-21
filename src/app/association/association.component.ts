@@ -24,8 +24,12 @@ export class AssociationComponent implements OnInit {
 
   ngOnInit() {
     // A modifier une fois l'appel à l'API REST fonctionnel
-    this.sports = this.rest.getUserSports();
-    this.locations = this.rest.getUserLocations();
+    this.rest.getUserLocations(this.session.getConnectedUserId()).subscribe((data: {}) => {
+      this.locations = JSON.parse(JSON.stringify(data));
+    });
+    this.rest.getUserSports(this.session.getConnectedUserId()).subscribe((data: {}) => {
+      this.sports = JSON.parse(JSON.stringify(data));
+    });
   }
 
   saveAssociation() {

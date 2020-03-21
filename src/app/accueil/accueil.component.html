@@ -14,15 +14,25 @@
       </div>
 
       <div [hidden]="regionChoosed == undefined" class="input-group mb-3">
-        <select class="custom-select" [(ngModel)]="departementChoosed" [ngModelOptions]="{standalone: true}" (ngModelChange)="displayCommunes(departementChoosed)">
+        <select class="custom-select" formControlName="departement" [(ngModel)]="departementChoosed" (ngModelChange)="displayCommunes(departementChoosed)">
           <option *ngFor="let departement of departements" [ngValue]="departement.code">{{ departement.nom }}</option>
         </select>
+        <div *ngIf="tentativeCreationLocalisation && locationForm.controls['departement'].errors" >
+          <div *ngIf="locationForm.controls['departement'].errors.required" class="alert alert-danger">
+            Ce champ est obligatoire
+          </div>
+        </div>
       </div>
       
       <div [hidden]="departementChoosed == undefined" class="input-group mb-3">
-        <select class="custom-select" [(ngModel)]="communeChoosed" [ngModelOptions]="{standalone: true}">
+        <select class="custom-select" formControlName="commune" [(ngModel)]="communeChoosed">
           <option *ngFor="let commune of communes" [ngValue]="commune.code">{{ commune.nom }}</option>
         </select>
+        <div *ngIf="tentativeCreationLocalisation && locationForm.controls['commune'].errors" >
+          <div *ngIf="locationForm.controls['commune'].errors.required" class="alert alert-danger">
+            Ce champ est obligatoire
+          </div>
+        </div>
       </div>
 
       <button class="button" type="submit">Sauvegarder la localisation</button>
@@ -45,9 +55,7 @@
       </div>
       <br><br>
       <select formControlName="tempsIdeal" class="custom-select" [(ngModel)]="temps">
-        <option>Ensoleillé</option>
-        <option>Nuageux</option>
-        <option>Pluie</option>
+        <option *ngFor="let weather of weathers" [ngValue]="weather.weather">{{ weather.weather }}</option>
       </select>
       <div *ngIf="tentativeCreationSport && sportForm.controls['tempsIdeal'].errors" >
         <div *ngIf="sportForm.controls['tempsIdeal'].errors.required" class="alert alert-danger">

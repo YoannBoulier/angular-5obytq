@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup,  FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { SessionService } from '../session.service';
+import { Observable, of } from 'rxjs';
 
 
 @Component({
@@ -10,6 +11,7 @@ import { SessionService } from '../session.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+  status: Observable<any>;
   connexionForm: FormGroup;
   tentative = false; // Flag de tentative de connexion
 
@@ -34,8 +36,13 @@ export class LoginComponent implements OnInit {
       return;
     }
 
-    this.session.connect(donneesConnexion);
+    status = this.session.connect(donneesConnexion).subscribe((data: {}) => {
+      this.session.user = JSON.parse(JSON.stringify(data));
+    });
     
+    console.log(status);
+
     this.router.navigateByUrl('/creation');
   }
+
 }

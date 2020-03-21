@@ -18,12 +18,15 @@ export class AccueilComponent implements OnInit {
   regions:any[] = [];
   departements:any[] = [];
   communes:any[] = [];
+  weathers:any[] = [];
   regionChoosed; departementChoosed; communeChoosed;
   sportChoosed; temps; aquatique; houleMin; houleMax; exterieur; ventMin; ventMax;
 
   constructor(private builder: FormBuilder, private api : GeoApiService, private rest : RestApiService, private session : SessionService) { 
     this.locationForm = this.builder.group({
-      region: ['', Validators.required ]
+      region: ['', Validators.required ],
+      departement: ['', Validators.required ],
+      commune: ['', Validators.required ]
     });
     this.sportForm = this.builder.group({
       sport: ['', Validators.required ],
@@ -34,6 +37,9 @@ export class AccueilComponent implements OnInit {
   ngOnInit() {
     this.api.getRegions().subscribe((data: {}) => {
       this.regions = JSON.parse(JSON.stringify(data));
+    });
+    this.rest.getWeathers().subscribe((data: {}) => {
+      this.weathers = JSON.parse(JSON.stringify(data));
     });
   }
 
