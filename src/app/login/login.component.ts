@@ -17,7 +17,7 @@ export class LoginComponent implements OnInit {
               private session : SessionService,
               private router: Router) {
     this.connexionForm = this.builder.group({
-      email: ['', [ Validators.required, Validators.pattern('[A-Za-z.]+@[A-Za-z]+[.][a-z]+')] ],
+      email: ['', [ Validators.required, Validators.pattern('[A-Za-z0-9.]+@[A-Za-z]+[.][a-z]+')] ],
       password: ['', Validators.required ]
     });
   }
@@ -36,6 +36,7 @@ export class LoginComponent implements OnInit {
 
     this.session.connect(donneesConnexion).subscribe((data: {}) => {
       this.session.user = JSON.parse(JSON.stringify(data));
+      console.log("User Id : " + this.session.getConnectedUserId());
       if(this.session.getConnectedUserId() != "-1") {
         this.session.isConnected = true;
         this.router.navigateByUrl('/creation');

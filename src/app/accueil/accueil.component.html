@@ -35,7 +35,7 @@
       
       <div [hidden]="departementChoosed == undefined" class="input-group mb-3">
         <select class="custom-select" formControlName="commune" [(ngModel)]="communeChoosed">
-          <option *ngFor="let commune of communes" [ngValue]="commune.code">{{ commune.nom }}</option>
+          <option *ngFor="let commune of communes" [ngValue]="commune.nom">{{ commune.nom }}</option>
         </select>
         <div *ngIf="tentativeCreationLocalisation && locationForm.controls['commune'].errors" >
           <div *ngIf="locationForm.controls['commune'].errors.required" class="alert alert-danger">

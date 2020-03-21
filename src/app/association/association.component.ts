@@ -42,7 +42,9 @@ export class AssociationComponent implements OnInit {
     console.log(this.locationChoosed);
     console.log(this.sportChoosed);
 
-    this.rest.saveAssociation(this.sportChoosed, this.locationChoosed);
+    this.rest.saveAssociation(this.sportChoosed, this.locationChoosed).subscribe((data: {}) => {
+      console.log(data);
+    });
   }
 
   isConnected(){

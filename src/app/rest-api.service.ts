@@ -22,7 +22,7 @@ export class RestApiService {
 
   // TEST A FAIRE
   register(email, password, nom, prenom, pseudo): Observable<any>{
-    return this.httpClient.post(endpoint + "/user", { "email": email, "password": password, "firstname": prenom, "lastname": nom, "username": pseudo }, httpOptions).pipe(map(this.extractData));
+    return this.httpClient.post(endpoint + "/user", { "email": email, "password": password, "firstName": prenom, "lastName": nom, "userName": pseudo }, httpOptions).pipe(map(this.extractData));
   }
 
   // TEST A FAIRE
@@ -52,11 +52,11 @@ export class RestApiService {
 
   // TEST A FAIRE
   saveSport(userId, nom, weather, houleMin, houleMax, ventMin, ventMax) {
-    return this.httpClient.post(endpoint, { "name": nom, "idealWeather": weather, "windMaxSpeed": ventMax, "windMinSpeed": ventMin, "seaLevelMax": houleMax, "seaLevelMin": houleMin }, httpOptions).pipe(map(this.extractData));
+    return this.httpClient.post(endpoint + "/user/" + userId + "/sport", { "name": nom, "idealWeather": weather, "windMaxSpeed": ventMax, "windMinSpeed": ventMin, "seaLevelMax": houleMax, "seaLevelMin": houleMin }, httpOptions).pipe(map(this.extractData));
   }
 
   // TEST A FAIRE
   saveLocation(userId, nom, location) {
-    return this.httpClient.post(endpoint  + "/user/" + userId + "/location", { "name": nom, "location": location }, httpOptions).pipe(map(this.extractData));
+    return this.httpClient.post(endpoint  + "/user/" + userId + "/location", { "name": nom, "ville": location }, httpOptions).pipe(map(this.extractData));
   }  
 }
