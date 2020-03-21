@@ -25,7 +25,7 @@ export class SessionService {
   }
 
   getConnectedUserId() {
-    return "1";//this.user.id;
+    return this.user.id;
   }
 
   private extractData(res: Response) {

@@ -12,6 +12,7 @@ import { SessionService } from '../session.service';
 export class LoginComponent implements OnInit {
   connexionForm: FormGroup;
   tentative = false; // Flag de tentative de connexion
+  mdpIncorrect = false;
 
   constructor(private builder: FormBuilder,
               private session : SessionService,
@@ -40,6 +41,8 @@ export class LoginComponent implements OnInit {
       if(this.session.getConnectedUserId() != "-1") {
         this.session.isConnected = true;
         this.router.navigateByUrl('/creation');
+      } else {
+        this.mdpIncorrect = true;
       }
     });
   }

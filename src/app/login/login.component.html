@@ -1,6 +1,9 @@
 <div class="card text-center mx-auto" style="max-width: 30rem;">
   <h5 class="card-header">Formulaire de connexion</h5>
   <div class="card-body">
+    <div [hidden]="!mdpIncorrect" class="alert alert-danger" role="alert">
+      Mot de passe incorrect !
+    </div>
     <form [formGroup]="connexionForm" (ngSubmit)="connexion(connexionForm.value)">
       <div class="form-group">
         Adresse Mail : <input type="email" class="form-control" formControlName="email">
