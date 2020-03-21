@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup,  FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { SessionService } from '../session.service';
-import { Observable, of } from 'rxjs';
 
 
 @Component({
@@ -11,13 +10,12 @@ import { Observable, of } from 'rxjs';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  status: Observable<any>;
   connexionForm: FormGroup;
   tentative = false; // Flag de tentative de connexion
 
   constructor(private builder: FormBuilder,
               private session : SessionService,
-              private router: Router ) {
+              private router: Router) {
     this.connexionForm = this.builder.group({
       email: ['', [ Validators.required, Validators.pattern('[A-Za-z.]+@[A-Za-z]+[.][a-z]+')] ],
       password: ['', Validators.required ]
@@ -36,13 +34,12 @@ export class LoginComponent implements OnInit {
       return;
     }
 
-    status = this.session.connect(donneesConnexion).subscribe((data: {}) => {
+    this.session.connect(donneesConnexion).subscribe((data: {}) => {
       this.session.user = JSON.parse(JSON.stringify(data));
+      if(this.session.getConnectedUserId() != "-1") {
+        this.session.isConnected = true;
+        this.router.navigateByUrl('/creation');
+      }
     });
-    
-    console.log(status);
-
-    this.router.navigateByUrl('/creation');
   }
-
 }

@@ -70,11 +70,11 @@ export class AccueilComponent implements OnInit {
       return;
     }
 
-    console.log(this.regionChoosed);
-    console.log(this.departementChoosed);
     console.log(this.communeChoosed);
 
-    // Appel à l'API REST pour sauvegarde la localisation
+    this.rest.saveLocation(this.session.getConnectedUserId(), this.nom, this.communeChoosed).subscribe((data: {}) => {
+      console.log(data);
+    });
 
   }
 
@@ -95,7 +95,9 @@ export class AccueilComponent implements OnInit {
     console.log(this.ventMax);
 
     // Appel à l'API REST pour sauvegarde le sport
-
+    this.rest.saveSport(this.session.getConnectedUserId(), this.sport, this.communeChoosed).subscribe((data: {}) => {
+      console.log(data);
+    });
   }
 
   isConnected(){
