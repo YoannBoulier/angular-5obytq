@@ -51,8 +51,8 @@ export class RestApiService {
   }
 
   // TEST A FAIRE
-  saveSport(userId, nom,) {
-    return this.httpClient.post(endpoint, {  }, httpOptions).pipe(map(this.extractData));
+  saveSport(userId, nom, weather, houleMin, houleMax, ventMin, ventMax) {
+    return this.httpClient.post(endpoint, { "name": nom, "idealWeather": weather, "windMaxSpeed": ventMax, "windMinSpeed": ventMin, "seaLevelMax": houleMax, "seaLevelMin": houleMin }, httpOptions).pipe(map(this.extractData));
   }
 
   // TEST A FAIRE
