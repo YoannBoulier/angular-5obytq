@@ -12,7 +12,7 @@ import { RestApiService } from '../rest-api.service';
 export class RegisterComponent implements OnInit {
   registerForm: FormGroup;
   enregistrer = false;
-  user;
+  user; nom; prenom; pseudo;
 
   constructor(private builder: FormBuilder, public rest : RestApiService) {
     this.registerForm = this.builder.group({
@@ -38,7 +38,7 @@ export class RegisterComponent implements OnInit {
 
     console.log(donneesInscription);
     
-    this.rest.register(donneesInscription.email, donneesInscription.password).subscribe((data: {}) => {
+    this.rest.register(donneesInscription.email, donneesInscription.password, this.nom, this.prenom, this.pseudo).subscribe((data: {}) => {
       this.user = JSON.parse(JSON.stringify(data));
     });
 

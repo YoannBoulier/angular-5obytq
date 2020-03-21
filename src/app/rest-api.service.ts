@@ -20,19 +20,22 @@ export class RestApiService {
     return body || { };
   }
 
-  // TEST OK
-  register(email, password): Observable<any>{
-    return this.httpClient.post(endpoint + "/user", { "email": email, "password": password  }, httpOptions).pipe(map(this.extractData));
+  // TEST A FAIRE
+  register(email, password, nom, prenom, pseudo): Observable<any>{
+    return this.httpClient.post(endpoint + "/user", { "email": email, "password": password, "firstname": prenom, "lastname": nom, "username": pseudo }, httpOptions).pipe(map(this.extractData));
   }
 
+  // TEST A FAIRE
   getUserSports(userId): Observable<any> {
     return this.httpClient.get(endpoint + "/user/" + userId + "/sports", httpOptions).pipe(map(this.extractData));
   }
   
+  // TEST A FAIRE
   getUserLocations(userId): Observable<any> {
     return this.httpClient.get(endpoint + "/user/" + userId + "/locations", httpOptions).pipe(map(this.extractData));
   }
 
+  // TEST A FAIRE
   getUserAssociations(userId): Observable<any> {
     return this.httpClient.get(endpoint + "/user/" + userId + "/associations", httpOptions).pipe(map(this.extractData));
   }
@@ -43,6 +46,6 @@ export class RestApiService {
   }
   
   saveAssociation(sportId, locationId) {
-    // Appel à l'API REST
+    return this.httpClient.put(endpoint + "/sport/" + sportId + "/location/" + locationId, httpOptions).pipe(map(this.extractData));
   }
 }

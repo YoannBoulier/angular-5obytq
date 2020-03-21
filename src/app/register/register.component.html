@@ -29,8 +29,14 @@
             Les deux mots de passe doivent être identiques
           </div>
         </div>
-      <br>
-      <button class="button" type="submit">Inscription</button>
+        <br><br>
+        Nom : <input type="text" class="form-control" [(ngModel)]="nom" [ngModelOptions]="{standalone: true}">
+        <br><br>
+        Prénom : <input type="text" class="form-control" [(ngModel)]="prenom" [ngModelOptions]="{standalone: true}">
+        <br><br>
+        Pseudo : <input type="text" class="form-control" [(ngModel)]="pseudo" [ngModelOptions]="{standalone: true}">
+        <br><br>
+        <button class="button" type="submit">Inscription</button>
       </div>
     </form>
   </div>
