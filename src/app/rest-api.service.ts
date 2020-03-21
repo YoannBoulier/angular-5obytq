@@ -45,7 +45,18 @@ export class RestApiService {
     return this.httpClient.get(endpoint + "/weathers", httpOptions).pipe(map(this.extractData));
   }
   
+  // TEST A FAIRE
   saveAssociation(sportId, locationId) {
     return this.httpClient.put(endpoint + "/sport/" + sportId + "/location/" + locationId, httpOptions).pipe(map(this.extractData));
   }
+
+  // TEST A FAIRE
+  saveSport(userId) {
+    return this.httpClient.post(endpoint, { }, httpOptions).pipe(map(this.extractData));
+  }
+
+  // TEST A FAIRE
+  saveLocation(userId, nom, location) {
+    return this.httpClient.post(endpoint  + "/user/" + userId + "/location", { "name": nom, "location": location }, httpOptions).pipe(map(this.extractData));
+  }  
 }

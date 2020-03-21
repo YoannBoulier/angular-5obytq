@@ -19,14 +19,15 @@ export class AccueilComponent implements OnInit {
   departements:any[] = [];
   communes:any[] = [];
   weathers:any[] = [];
-  regionChoosed; departementChoosed; communeChoosed;
+  regionChoosed; departementChoosed; communeChoosed; nom;
   sportChoosed; temps; aquatique; houleMin; houleMax; exterieur; ventMin; ventMax;
 
   constructor(private builder: FormBuilder, private api : GeoApiService, private rest : RestApiService, private session : SessionService) { 
     this.locationForm = this.builder.group({
       region: ['', Validators.required ],
       departement: ['', Validators.required ],
-      commune: ['', Validators.required ]
+      commune: ['', Validators.required ],
+      nom: ['', Validators.required ]
     });
     this.sportForm = this.builder.group({
       sport: ['', Validators.required ],

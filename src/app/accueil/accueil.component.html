@@ -2,6 +2,15 @@
   <h5 class="card-header">Ajouter une localisation</h5>
   <div class="card-body">
     <form [formGroup]="locationForm" (ngSubmit)="saveLocation()">
+      <label class="form-check-label" style="margin-right: 25px" for="nom">Nom du sport :</label>
+      <input formControlName="nom" [(ngModel)]="nom" id="nom">
+      <div *ngIf="tentativeCreationLocalisation && locationForm.controls['nom'].errors" >
+        <div *ngIf="locationForm.controls['nom'].errors.required" class="alert alert-danger">
+          Ce champ est obligatoire
+        </div>
+      </div>
+      <br><br>
+      
       <div class="input-group mb-3">
         <select class="custom-select" formControlName="region" [(ngModel)]="regionChoosed" (ngModelChange)="displayDepartements(regionChoosed)">
           <option *ngFor="let region of regions" [ngValue]="region.code">{{ region.nom }}</option>
