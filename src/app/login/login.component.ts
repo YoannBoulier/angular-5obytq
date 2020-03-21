@@ -29,6 +29,7 @@ export class LoginComponent implements OnInit {
 
   // Fonction lancée à la validation du formulaire de connexion
   connexion(donneesConnexion) {
+    this.mdpIncorrect = false;
     this.tentative = true;
 
     if (this.connexionForm.invalid) {
